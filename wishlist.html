@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Wishlist – Royal Radiance</title>
+  <script src="scripts/cart.js" defer></script>
+</head>
+<body>
+  <h1>Your Wishlist</h1>
+  <ul id="wishlist-items"></ul>
+
+  <script>
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const list = document.getElementById("wishlist-items");
+    if (wishlist.length === 0) {
+      list.innerHTML = "<li>Your wishlist is empty.</li>";
+    } else {
+      wishlist.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

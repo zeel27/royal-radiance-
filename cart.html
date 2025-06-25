@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Your Cart</h1>
+    {% if items %}
+        <ul>
+            {% for item in items %}
+                <li>
+                    <strong>{{ item.name }}</strong><br>
+                    Price: ${{ item.price }}<br>
+                    Quantity: {{ item.quantity }}
+                </li>
+            {% endfor %}
+        </ul>
+        <p><strong>Total:</strong> ${{ items | sum(attribute='price') }}</p>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+    <a href="{{ url_for('home') }}">← Back to Home</a>
+</body>
+</html>
